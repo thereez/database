@@ -102,3 +102,48 @@ $$
 	END
 $$
 LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION deletebyindex(model_ VARCHAR(80)) RETURNS void AS
+$$
+	BEGIN
+		DELETE FROM cars WHERE model=model_;
+	END
+$$
+LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION deletebypk1(id_ integer) RETURNS void AS
+$$
+	BEGIN
+		DELETE FROM cars WHERE id=id_;
+	END
+$$
+LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION deletebypk2(name_ VARCHAR(80)) RETURNS void AS
+$$
+	BEGIN
+		DELETE FROM producers WHERE name=name_;
+	END
+$$
+LANGUAGE plpgsql;
+
+
+CREATE OR REPLACE FUNCTION updatebypk1(id_ integer, model_ VARCHAR(80), price_ integer, producer_ VARCHAR(80)) RETURNS void AS
+$$
+	BEGIN
+		UPDATE cars
+		SET model = model_, price=price_, producer=producer_
+		WHERE id=id_;
+	END
+$$
+LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION updatebypk2(name_ VARCHAR(80), site_ VARCHAR(80), tel_num_ integer) RETURNS void AS
+$$
+	BEGIN
+		UPDATE producers
+		SET site = site_, tel_num = tel_num_
+		WHERE name=name_;
+	END
+$$
+LANGUAGE plpgsql;
